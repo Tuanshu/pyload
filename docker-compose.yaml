@@ -1,0 +1,23 @@
+version: "2.1"
+
+services:
+  pyload:
+    # build: .
+    # image: pyload:1.0.0
+    # container_name: pyload
+    # image: pyload/pyload
+    # https://github.com/linuxserver/docker-pyload-ng
+    # https://hub.docker.com/r/linuxserver/pyload
+    image: lscr.io/linuxserver/pyload-ng:latest
+    environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Asia/Singapore
+    volumes:
+      - ./config:/config
+      - ./downloads:/downloads
+    ports:
+      - 8000:8000 # Webinterface
+      - 9666:9666 # Click 'N' Load
+
+    restart: unless-stopped
